@@ -1,0 +1,18 @@
+<%= form_with(model: todo, html: {class: "todolistform"}) do |form| %>
+  <div id="todolist_todoid_<%= todo.id%>" class="bg-white border border-blue">
+    <div class="d-flex px-3 justify-content-between">
+      <div class="m-2">
+        <%= form.text_field :title, class: "form-control", placeholder: "Enter Task Name" %>
+      </div>
+      <div class="m-2">
+        <%= form.date_field :due_date, class: 'form-control' %>
+      </div>
+      <div class="m-2">
+        <%= form.file_field :files, multiple: true %>
+      </div>
+      <div class="form-inline my-2 my-lg-0">
+        <%= form.submit class: "btn btn-success m-2"%>
+      </div>
+    </div>
+  </div>
+<% end %>

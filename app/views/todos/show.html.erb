@@ -1,0 +1,29 @@
+<div class="d-flex px-3 mt-3 justify-content-between">
+  <h2><%= @todo.title %></h2>
+  <%= link_to 'Back', todos_path, class: "btn btn-warning mb-2" %>
+</div>
+<%= form_with(model: [@todo, @comment]) do |f| %>
+  <div class="bg-white border border-blue">
+    <div class="d-flex px-3 justify-content-between">
+      <div class="w-100 m-2">
+        <%= f.text_field :body, class: "form-control", placeholder: "Enter Comment" %>
+      </div>
+      <div class="form-inline my-2 my-lg-0">
+        <%= f.submit "Add Comment", class: "btn btn-success m-2"%>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<div id="comment_all">
+  <% @comment_counts = @todo.comments.count %>
+  <div class="container">
+    <div class="be-comment-block mt-3 border rounded border-blue">
+      <h1 class="comments-title">Comments <%= @comment_counts%></h1>
+      <% @comments.each do |comment| %>
+        <%= render 'comments/comment', comment: comment %>
+      <% end %>
+    </div>
+  </div>
+</div>
+

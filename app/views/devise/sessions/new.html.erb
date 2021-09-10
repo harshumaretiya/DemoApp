@@ -1,0 +1,66 @@
+<main>
+  <section class="section section-shaped section-lg">
+    <div>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="container pt-lg-md">
+      <div class="row justify-content-center">
+        <div class="col-lg-5">
+          <div class="card bg-secondary shadow border-0">
+            <div class="card-body px-lg-5 py-lg-5">
+              <div class="text-center text-muted mb-4">
+                <small>Sign in with credentials</small>
+              </div>
+              <%= form_for(resource, as: resource_name, url: session_path(resource_name), role: "form") do |f| %>
+                <div class="form-group mb-3">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                    </div>
+                    <%= f.email_field :email, autofocus: true, placeholder: "Email", class: "form-control" %>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                    </div>
+                    <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+                  </div>
+                </div>
+                <div class="custom-control custom-control-alternative custom-checkbox">
+                  <%= f.check_box :remember_me, class: "custom-control-input", id: "customCheckLogin" %>
+                  <label class="custom-control-label" for="customCheckLogin">
+                    <span>Remember me</span>
+                  </label>
+                </div>
+                <div class="text-center">
+                  <%= f.submit "Sign in", class: "btn btn-primary my-4" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-6">
+              <%= link_to new_password_path(resource_name), class: "text-light" do %>
+                <small>Forgot password?</small>
+              <% end %>
+            </div>
+            <div class="col-6 text-right">
+              <%= link_to new_registration_path(resource_name), class: "text-light" do %>
+                <small>Create new account</small>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

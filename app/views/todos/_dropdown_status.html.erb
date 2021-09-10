@@ -1,0 +1,17 @@
+<% if todo.persisted? %>
+  <div class="dropdown float-left">
+    <button class="btn btn-sm mr-1 btn-outline-<%= todo.color_class %> dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <%= todo.readable_status %>
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <% Todo::STATUS_OPTIONS.each do |status| %>
+        <a class="dropdown-item" href="#"
+        data-reflex="click->StatusReflex#change"
+        data-id="<%= todo.id %>"
+        data-status="<%= status[1] %>">
+          <%= status[0] %>
+        </a>
+      <% end %>
+    </div>
+  </div>
+<% end %>

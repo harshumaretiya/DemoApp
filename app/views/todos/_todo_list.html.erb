@@ -1,0 +1,78 @@
+<% @comment_counts = todo.comments.count %>
+<% if !todo.due_date.present? %>
+  <div id="todolist_todoid_<%= todo.id%>" class="second bg-white border border-blue">
+    <div class="d-flex px-3 justify-content-between">
+      <div class="m-2">
+        <%= link_to edit_todo_path(todo) do %>
+          <h3><%= todo.title %></h3>
+          <%= render(ProgressBadgeComponent.new(status: todo.status)) %>
+        <% end %>
+      </div>
+      <div class="form-inline my-2 my-lg-0">
+        <div class="m-2">
+          <%= link_to todo_path(todo) do %>
+            <i id="comment_list" class="fas fa-comments"></i> 
+            <span><%= @comment_counts%> </span>
+            <% end %>
+        </div>
+      <div>
+        <%= render partial: 'dropdown_status', locals: { todo: todo } %>
+      </div>
+      <div>
+        <span class="badge badge-pill badge-primary mt-1 py-2"><%= todo.due_date%></span>
+      </div>
+        <%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-danger m-2"%>
+      </div>
+    </div>
+  </div>
+  <%= render partial: 'delete_file', locals: { todo: todo } %>
+<% elsif todo.due_date <= Date.today %>
+  <div class="second bg-white border border-blue">
+    <div class="d-flex px-3 justify-content-between">
+      <div class="m-2">
+        <h3><%= todo.title %></h3>  
+        <%= render(ProgressBadgeComponent.new(status: todo.status)) %>
+      </div>
+      <div class="form-inline my-2 my-lg-0">
+        <div class="m-2">
+          <%= link_to todo_path(todo) do %>
+            <i id="comment_list" class="fas fa-comments"></i> 
+            <span><%= @comment_counts%> </span>
+          <% end %>
+        </div>
+        <div>
+          <span class="badge badge-pill badge-danger mt-1 py-2"><%= todo.due_date%></span>
+        </div>
+        <%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-danger m-2"%>
+      </div>
+    </div>
+  </div>
+  <%= render partial: 'delete_file', locals: { todo: todo } %>
+<% else %>
+  <div id="todolist_todoid_<%= todo.id%>" class="second bg-white border border-blue">
+    <div class="d-flex px-3 justify-content-between">
+      <div class="m-2">
+        <%= link_to edit_todo_path(todo) do %>
+          <h3><%= todo.title %></h3>
+          <%= render(ProgressBadgeComponent.new(status: todo.status)) %>
+        <% end %>
+      </div>
+      <div class="form-inline my-2 my-lg-0">
+        <div class="m-2">
+          <%= link_to todo_path(todo) do %>
+            <i id="comment_list" class="fas fa-comments"></i> 
+            <span><%= @comment_counts%> </span>
+          <% end %>
+        </div>
+        <div>
+          <%= render partial: 'dropdown_status', locals: { todo: todo } %>
+        </div>
+        <div>
+          <span class="badge badge-pill badge-primary mt-1 py-2"><%= todo.due_date%></span>
+        </div>
+        <%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-danger m-2"%>
+      </div>
+    </div>
+  </div>
+  <%= render partial: 'delete_file', locals: { todo: todo } %>
+<% end %>

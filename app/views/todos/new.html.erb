@@ -1,0 +1,27 @@
+<h3>Task Managment</h3>
+<%= form_with(model: @todo) do |form| %>
+  <div class="card">
+    <div class="card-body ">
+      <div class="form-inline justify-content-md-center">
+        <div class="form-group mx-sm-3 mb-2">
+          <%= form.text_field :title, class: "form-control", placeholder: "Enter Task Name" %>
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+          <%= form.date_field :due_date, id: :task_due_date, class: 'form-control' %>
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+          <%= form.file_field :files, multiple: true %>
+        </div>
+        <%= form.hidden_field :status, value: 'not-started' %>
+        <%= form.submit class:"btn btn-primary mb-2" %>
+      </div>
+    </div>
+  </div>
+  <div class="mt-2 container">
+    <div id="todolist_index">
+      <% @todo_all.each do |todo| %>
+        <%= render 'todo_list', todo: todo %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
